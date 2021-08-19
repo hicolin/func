@@ -1,5 +1,26 @@
 <?php
 
+// 目录常量，根据框架调整
+const ROOT = __DIR__;
+const LOG = ROOT . '/log/';
+const WWW = ROOT . '/www/';
+const UPLOAD = WWW . '/upload/';
+
+// 记录日志
+function _log($path, $data)
+{
+    $log_path = LOG . $path;
+    if (!is_dir($log_path)) {
+        mkdir($log_path, 0755, true);
+    }
+    $file = $log_path . '/' . date('Y-m-d') . ".txt";
+    $time = date('Y-m-d H:i:s');
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $url = $_SERVER['REQUEST_URI'];
+    $data = "{$time}\t{$ip}\t{$url}\t{$data}\r\n";
+    return file_put_contents($file, $data);
+}
+
 // 不转义中文字符的json编码
 function json($data)
 {
@@ -63,5 +84,4 @@ function random_str($len, $chars = '')
     }
     return $str;
 }
-
 
