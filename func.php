@@ -36,7 +36,7 @@ function json($data)
 // 返回成功信息
 function success($msg, $data = [])
 {
-    $r_data = ['msg' => $msg, 'code' => 1];
+    $r_data = ['code' => 1, 'msg' => $msg];
     if ($data) {
         $r_data['data'] = $data;
     }
@@ -46,7 +46,7 @@ function success($msg, $data = [])
 // 返回失败信息
 function fail($msg)
 {
-    return ['msg' => $msg, 'code' => -1];
+    return ['code' => 1, 'msg' => $msg];
 }
 
 // 是否为开发环境
