@@ -64,7 +64,7 @@ function is_dev_ip()
 // 获取当前站点url
 function site_url()
 {
-    return $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
+    return  (strpos(strtolower($_SERVER['SERVER_PROTOCOL']),'https')  === false ? 'http' : 'https') . '://' . $_SERVER['HTTP_HOST'];
 }
 
 // 生成UUID
